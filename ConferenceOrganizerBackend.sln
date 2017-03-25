@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{36F201D9-8783-4D82-BF5D-8E89569ED450}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{614E6077-78EB-4C5C-A5A1-149AAD143E87}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ConferenceOrganizerBackend", "src\ConferenceOrganizerBackend\ConferenceOrganizerBackend.xproj", "{1451E71E-10FC-4B93-A76D-E9123BA863C4}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SubmissionDatabase", "src\SubmissionDatabase\SubmissionDatabase.xproj", "{DEB5DA98-CF42-49AB-B64B-0D121E3EF79A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1451E71E-10FC-4B93-A76D-E9123BA863C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1451E71E-10FC-4B93-A76D-E9123BA863C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1451E71E-10FC-4B93-A76D-E9123BA863C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1451E71E-10FC-4B93-A76D-E9123BA863C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEB5DA98-CF42-49AB-B64B-0D121E3EF79A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEB5DA98-CF42-49AB-B64B-0D121E3EF79A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEB5DA98-CF42-49AB-B64B-0D121E3EF79A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEB5DA98-CF42-49AB-B64B-0D121E3EF79A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1451E71E-10FC-4B93-A76D-E9123BA863C4} = {36F201D9-8783-4D82-BF5D-8E89569ED450}
+		{DEB5DA98-CF42-49AB-B64B-0D121E3EF79A} = {36F201D9-8783-4D82-BF5D-8E89569ED450}
+	EndGlobalSection
+EndGlobal
