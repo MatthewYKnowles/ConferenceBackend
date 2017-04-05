@@ -13,7 +13,7 @@ namespace SubmissionDatabase
         Task<List<Submission>> GetAllSubmissons();
         Submission GetSubmission(string submissionId);
         SubmissionStatus GetSubmissionStatus();
-        void SetSubmissionStatus(string newStatus);
+        void SetSubmissionStatus(SubmissionStatus newStatus);
     }
 
     public class SubmissionToDatabase : ISubmissionToDatabase
@@ -61,10 +61,10 @@ namespace SubmissionDatabase
             return collection.Result.Current == null;
         }
 
-        public void SetSubmissionStatus(string newStatus)
+        public void SetSubmissionStatus(SubmissionStatus newStatus)
         {
             _submissionsStatus.DeleteOne(_ => true);
-            _submissionsStatus.InsertOne(new SubmissionStatus(newStatus));
+            _submissionsStatus.InsertOne(newStatus);
         }
     }
 

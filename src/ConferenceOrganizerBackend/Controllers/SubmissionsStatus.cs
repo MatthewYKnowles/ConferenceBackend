@@ -35,7 +35,7 @@ namespace ConferenceOrganizerBackend.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string newStatus)
+        public void Post([FromBody]SubmissionStatus newStatus)
         {
             _submissionToDatabase.SetSubmissionStatus(newStatus);
         }
