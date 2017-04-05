@@ -21,14 +21,14 @@ namespace ConferenceOrganizerBackend.Controllers
 
         // GET: api/values
         [HttpGet]
-        public string Get()
+        public SubmissionStatus Get()
         {
             return _submissionToDatabase.GetSubmissionStatus();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(string newStatus)
+        public SubmissionStatus Get(string newStatus)
         {
             return _submissionToDatabase.GetSubmissionStatus();
         }

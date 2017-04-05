@@ -12,7 +12,7 @@ namespace SubmissionDatabase
         void InsertSubmission(Submission submission);
         Task<List<Submission>> GetAllSubmissons();
         Submission GetSubmission(string submissionId);
-        string GetSubmissionStatus();
+        SubmissionStatus GetSubmissionStatus();
         void SetSubmissionStatus(string newStatus);
     }
 
@@ -44,14 +44,14 @@ namespace SubmissionDatabase
             return _submissions.Find(document => document.Id == submissionId).FirstOrDefault();
         }
 
-        public string GetSubmissionStatus()
+        public SubmissionStatus GetSubmissionStatus()
         {
             if (CollectionDoesNotExist())
             {
                 _submissionsStatus.InsertOne(new SubmissionStatus("open"));
             }
             SubmissionStatus submissionsStatus = _submissionsStatus.FindAsync(_ => true).Result.First();
-            return submissionsStatus.Status;
+            return submissionsStatus;
         }
 
         private bool CollectionDoesNotExist()
