@@ -18,5 +18,6 @@ namespace SubmissionDatabase
         public string Bio { set; get; }
         public string SubmissionTitle { get; set; }
         public string SubmissionAbstract { get; set; }
+        public DateTime StartTime { get; set; }
     }
 }
