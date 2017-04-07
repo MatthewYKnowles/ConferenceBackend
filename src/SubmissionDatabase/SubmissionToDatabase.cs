@@ -63,7 +63,7 @@ namespace SubmissionDatabase
 
         public void SetSubmissionStatus(SubmissionStatus newStatus)
         {
-            _submissionsStatus.DeleteOne(_ => true);
+            _submissionsStatus.DeleteMany(_ => true);
             _submissionsStatus.InsertOne(newStatus);
         }
     }
