@@ -36,8 +36,9 @@ namespace ConferenceOrganizerBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(string id, [FromBody]Submission submission)
         {
+            _submissionToDatabase.updateSubmission(id, submission);
         }
 
         [HttpDelete("{id}")]
