@@ -70,7 +70,7 @@ namespace SubmissionDatabase
 
         public void updateSubmission(string id, Submission submission)
         {
-            var filter = Builders<Submission>.Filter.Eq("_id", id);
+            var filter = Builders<Submission>.Filter.Eq("_id", ObjectId.Parse(id));
             var result = _submissions.ReplaceOneAsync(filter, submission);
         }
     }

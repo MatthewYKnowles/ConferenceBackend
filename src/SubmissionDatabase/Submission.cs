@@ -19,7 +19,9 @@ namespace SubmissionDatabase
         public string SubmissionTitle { get; set; }
         public string SubmissionAbstract { get; set; }
         public string Room { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public int StartTimeInHours { get; set; }
+        public int StartTimeInMinutes { get; set; }
+        public int EndTimeInHours { get; set; }
+        public int EndTimeInMinutes { get; set; }
     }
 }
