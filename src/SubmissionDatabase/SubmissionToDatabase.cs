@@ -15,6 +15,7 @@ namespace SubmissionDatabase
         SubmissionStatus GetSubmissionStatus();
         void SetSubmissionStatus(SubmissionStatus newStatus);
         void updateSubmission(string id, Submission submission);
+        void deleteSubmission(string id);
     }
 
     public class SubmissionToDatabase : ISubmissionToDatabase
@@ -72,6 +73,12 @@ namespace SubmissionDatabase
         {
             var filter = Builders<Submission>.Filter.Eq("_id", ObjectId.Parse(id));
             var result = _submissions.ReplaceOneAsync(filter, submission);
+        }
+
+        public void deleteSubmission(string id)
+        {
+            var filter = Builders<Submission>.Filter.Eq("_id", ObjectId.Parse(id));
+            var result = _submissions.DeleteOneAsync(filter);
         }
     }
 

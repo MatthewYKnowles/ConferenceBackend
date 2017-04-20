@@ -38,8 +38,9 @@ namespace ConferenceOrganizerBackend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            _submissionToDatabase.deleteSubmission(id);
         }
     }
 }
