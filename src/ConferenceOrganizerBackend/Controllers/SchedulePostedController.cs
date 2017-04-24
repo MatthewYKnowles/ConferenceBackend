@@ -5,39 +5,40 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SubmissionDatabase;
 
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ConferenceOrganizerBackend.Controllers
 {
     [Route("api/[controller]")]
-    public class SubmissionsStatus : Controller
+    public class SchedulePostedController : Controller
     {
         private readonly ISubmissionToDatabase _submissionToDatabase;
 
-        public SubmissionsStatus(ISubmissionToDatabase submissionToDatabase)
+        public SchedulePostedController(ISubmissionToDatabase submissionToDatabase)
         {
             _submissionToDatabase = submissionToDatabase;
         }
 
+
         // GET: api/values
         [HttpGet]
-        public SubmissionStatus Get()
+        public SchedulePostedStatus Get()
         {
-            return _submissionToDatabase.GetSubmissionStatus();
+            return _submissionToDatabase.GetSchedulePostedStatus();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public SubmissionStatus Get(string newStatus)
+        public SchedulePostedStatus Get(string newStatus)
         {
-            return _submissionToDatabase.GetSubmissionStatus();
+            return _submissionToDatabase.GetSchedulePostedStatus();
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]SubmissionStatus newStatus)
+        public void Post([FromBody]SchedulePostedStatus newStatus)
         {
-            _submissionToDatabase.SetSubmissionStatus(newStatus);
+            _submissionToDatabase.SetSchedulePostedStatus(newStatus);
         }
 
         // PUT api/values/5

@@ -16,12 +16,15 @@ namespace SubmissionDatabase
         void SetSubmissionStatus(SubmissionStatus newStatus);
         void updateSubmission(string id, Submission submission);
         void deleteSubmission(string id);
+        SchedulePostedStatus GetSchedulePostedStatus();
+        void SetSchedulePostedStatus(SchedulePostedStatus newStatus);
     }
 
     public class SubmissionToDatabase : ISubmissionToDatabase
     {
         private readonly IMongoCollection<Submission> _submissions;
         private readonly IMongoCollection<SubmissionStatus> _submissionsStatus;
+        private readonly IMongoCollection<SchedulePostedStatus> _schedulePostedStatus;
         private IMongoDatabase _database;
 
         public SubmissionToDatabase(IMongoClient client)
@@ -29,6 +32,7 @@ namespace SubmissionDatabase
             _database = client.GetDatabase("conferencedb");
             _submissions = client.GetDatabase("conferencedb").GetCollection<Submission>("submissions");
             _submissionsStatus = client.GetDatabase("conferencedb").GetCollection<SubmissionStatus>("submissionsStatus");
+            _schedulePostedStatus = client.GetDatabase("conferencedb").GetCollection<SchedulePostedStatus>("schedulePostedStatus");
         }
 
         public void InsertSubmission(Submission submission)
@@ -48,19 +52,8 @@ namespace SubmissionDatabase
 
         public SubmissionStatus GetSubmissionStatus()
         {
-            if (CollectionDoesNotExist())
-            {
-                _submissionsStatus.InsertOne(new SubmissionStatus("open"));
-            }
             SubmissionStatus submissionsStatus = _submissionsStatus.FindAsync(_ => true).Result.First();
             return submissionsStatus;
-        }
-
-        private bool CollectionDoesNotExist()
-        {
-            var filter = new BsonDocument("name", "submissionsStatus");
-            var collection = _database.ListCollectionsAsync(new ListCollectionsOptions { Filter = filter });
-            return collection.Result.Current == null;
         }
 
         public void SetSubmissionStatus(SubmissionStatus newStatus)
@@ -79,6 +72,18 @@ namespace SubmissionDatabase
         {
             var filter = Builders<Submission>.Filter.Eq("_id", ObjectId.Parse(id));
             var result = _submissions.DeleteOneAsync(filter);
+        }
+
+        public SchedulePostedStatus GetSchedulePostedStatus()
+        {
+            SchedulePostedStatus schedulePostedStatus = _schedulePostedStatus.FindAsync(_ => true).Result.First();
+            return schedulePostedStatus;
+        }
+
+        public void SetSchedulePostedStatus(SchedulePostedStatus newStatus)
+        {
+            _schedulePostedStatus.DeleteMany(_ => true);
+            _schedulePostedStatus.InsertOne(newStatus);
         }
     }
 
