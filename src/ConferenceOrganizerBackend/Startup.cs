@@ -34,6 +34,7 @@ namespace ConferenceOrganizerBackend
             // Add framework services.
             services.AddMvc();
             services.AddTransient<ISubmissionToDatabase, SubmissionToDatabase>();
+            services.AddTransient<ISubmissionsMiddle, SubmissionsMiddle>();
             services.AddTransient<IMongoClient, MongoClient>();
 
             var corsBuilder = new CorsPolicyBuilder();

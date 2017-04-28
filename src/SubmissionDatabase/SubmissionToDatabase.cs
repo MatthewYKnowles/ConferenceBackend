@@ -10,7 +10,7 @@ namespace SubmissionDatabase
     public interface ISubmissionToDatabase
     {
         void InsertSubmission(Submission submission);
-        Task<List<Submission>> GetAllSubmissons();
+        List<Submission> GetAllSubmissons();
         Submission GetSubmission(string submissionId);
         SubmissionStatus GetSubmissionStatus();
         void SetSubmissionStatus(SubmissionStatus newStatus);
@@ -40,9 +40,9 @@ namespace SubmissionDatabase
             _submissions.InsertOne(submission);
         }
 
-        public async Task<List<Submission>> GetAllSubmissons()
+        public List<Submission> GetAllSubmissons()
         {
-            return await(await _submissions.FindAsync(_ => true)).ToListAsync();
+            return _submissions.Find(_ => true).ToList();
         }
 
         public Submission GetSubmission(string submissionId)

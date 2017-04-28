@@ -14,9 +14,10 @@ namespace ConferenceOrganizerBackend.Controllers
             _submissionToDatabase = submissionToDatabase;
         }
 
-        public List<Submission> Get()
+        [HttpGet]
+        public List<Submission> Get([FromQuery] bool sorted)
         {
-            return _submissionToDatabase.GetAllSubmissons().Result;
+            return _submissionToDatabase.GetAllSubmissons(sorted);
         }
 
         [HttpGet("{id}")]
