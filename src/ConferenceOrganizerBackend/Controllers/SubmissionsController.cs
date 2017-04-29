@@ -8,16 +8,18 @@ namespace ConferenceOrganizerBackend.Controllers
     public class SubmissionsController : Controller
     {
         private readonly ISubmissionToDatabase _submissionToDatabase;
+        private readonly ISubmissionsMiddle _submissionsMiddle;
 
-        public SubmissionsController(ISubmissionToDatabase submissionToDatabase)
+        public SubmissionsController(ISubmissionToDatabase submissionToDatabase, ISubmissionsMiddle submissionsMiddle)
         {
             _submissionToDatabase = submissionToDatabase;
+            _submissionsMiddle = submissionsMiddle;
         }
 
         [HttpGet]
         public List<Submission> Get([FromQuery] bool sorted)
         {
-            return _submissionToDatabase.GetAllSubmissons(sorted);
+            return _submissionsMiddle.GetAllSubmissons(sorted);
         }
 
         [HttpGet("{id}")]

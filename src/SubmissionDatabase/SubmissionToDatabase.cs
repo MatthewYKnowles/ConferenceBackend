@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -52,8 +49,7 @@ namespace SubmissionDatabase
 
         public SubmissionStatus GetSubmissionStatus()
         {
-            SubmissionStatus submissionsStatus = _submissionsStatus.FindAsync(_ => true).Result.First();
-            return submissionsStatus;
+            return _submissionsStatus.FindAsync(_ => true).Result.First();
         }
 
         public void SetSubmissionStatus(SubmissionStatus newStatus)
