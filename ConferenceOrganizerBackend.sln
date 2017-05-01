@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.10
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{36F201D9-8783-4D82-BF5D-8E89569ED450}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceOrganizerBackend", "src\ConferenceOrganizerBackend\ConferenceOrganizerBackend.csproj", "{1451E71E-10FC-4B93-A76D-E9123BA863C4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubmissionDatabase", "src\SubmissionDatabase\SubmissionDatabase.csproj", "{DEB5DA98-CF42-49AB-B64B-0D121E3EF79A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceOrganizer.Test", "ConferenceOrganizer.Test\ConferenceOrganizer.Test.csproj", "{1BCF81CE-EE25-4042-8CC4-583B82CF1C29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{DEB5DA98-CF42-49AB-B64B-0D121E3EF79A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEB5DA98-CF42-49AB-B64B-0D121E3EF79A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEB5DA98-CF42-49AB-B64B-0D121E3EF79A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BCF81CE-EE25-4042-8CC4-583B82CF1C29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BCF81CE-EE25-4042-8CC4-583B82CF1C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BCF81CE-EE25-4042-8CC4-583B82CF1C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BCF81CE-EE25-4042-8CC4-583B82CF1C29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
