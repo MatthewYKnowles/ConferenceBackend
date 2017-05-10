@@ -22,9 +22,10 @@ namespace SubmissionDatabase
         {
             if (sorted)
             {
-                List<Submission> Submissions = _submissionToDatabase.GetAllSubmissons();
-                Submissions = new List<Submission>(Submissions.OrderBy(submission => submission.StartTimeInMinutes));
-                return new List<Submission>(Submissions.OrderBy(submission => submission.StartTimeInHours));
+                return new List<Submission>(_submissionToDatabase
+                    .GetAllSubmissons()
+                    .OrderBy(submission => submission.StartTimeInMinutes)
+                    .OrderBy(submission => submission.StartTimeInHours));
 
             }
             return _submissionToDatabase.GetAllSubmissons();

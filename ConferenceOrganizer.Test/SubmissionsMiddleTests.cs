@@ -12,47 +12,51 @@ namespace ConferenceOrganizer.Test
         [TestMethod]
         public void TestWithNoSort()
         {
-            Submission SubmissionOne = new Submission();
-            SubmissionOne.StartTimeInHours = 11;
-            SubmissionOne.StartTimeInMinutes = 15;
-            Submission SubmissionTwo = new Submission();
-            SubmissionTwo.StartTimeInHours = 10;
-            SubmissionTwo.StartTimeInMinutes = 30;
-            List<Submission> Submissions = new List<Submission>();
-            Submissions.Add(SubmissionOne);
-            Submissions.Add(SubmissionTwo);
-            Mock<ISubmissionToDatabase> MockSubmissionToDatabase = new Mock<ISubmissionToDatabase>();
-            MockSubmissionToDatabase.Setup(x => x.GetAllSubmissons()).Returns(() => Submissions);
+            var submissions = new List<Submission>
+            {
+                new Submission
+                {
+                    StartTimeInHours = 11,
+                    StartTimeInMinutes = 15
+                },
+                new Submission
+                {
+                    StartTimeInHours = 10,
+                    StartTimeInMinutes = 30
+                }
+            };
+            var mockSubmissionToDatabase = new Mock<ISubmissionToDatabase>();
+            mockSubmissionToDatabase.Setup(x => x.GetAllSubmissons()).Returns(() => submissions);
 
-            SubmissionsMiddle submissionToMiddle = new SubmissionsMiddle(MockSubmissionToDatabase.Object);
+            var submissionToMiddle = new SubmissionsMiddle(mockSubmissionToDatabase.Object);
 
-            List<Submission> returnedSubmissions = submissionToMiddle.GetAllSubmissons(false);
+            var returnedSubmissions = submissionToMiddle.GetAllSubmissons(false);
 
-            Assert.AreEqual(returnedSubmissions, Submissions);
+            Assert.AreEqual(returnedSubmissions, submissions);
         }
 
         [TestMethod]
         public void TestWithSorting()
         {
-            Submission SubmissionOne = new Submission();
-            SubmissionOne.StartTimeInHours = 11;
-            SubmissionOne.StartTimeInMinutes = 15;
-            Submission SubmissionTwo = new Submission();
-            SubmissionTwo.StartTimeInHours = 10;
-            SubmissionTwo.StartTimeInMinutes = 30;
-            List<Submission> Submissions = new List<Submission>();
-            Submissions.Add(SubmissionOne);
-            Submissions.Add(SubmissionTwo);
-            Mock<ISubmissionToDatabase> MockSubmissionToDatabase = new Mock<ISubmissionToDatabase>();
-            MockSubmissionToDatabase.Setup(x => x.GetAllSubmissons()).Returns(() => Submissions);
-            SubmissionsMiddle submissionToMiddle = new SubmissionsMiddle(MockSubmissionToDatabase.Object);
+            var submissions = new List<Submission>
+            {
+                new Submission
+                {
+                    StartTimeInHours = 11,
+                    StartTimeInMinutes = 15
+                },
+                new Submission
+                {
+                    StartTimeInHours = 10,
+                    StartTimeInMinutes = 30
+                }
+            };
+            var mockSubmissionToDatabase = new Mock<ISubmissionToDatabase>();
+            mockSubmissionToDatabase.Setup(x => x.GetAllSubmissons()).Returns(() => submissions);
+            var submissionToMiddle = new SubmissionsMiddle(mockSubmissionToDatabase.Object);
 
-            List<Submission> sortedSubmissions = new List<Submission>();
-            sortedSubmissions.Add(SubmissionTwo);
-            sortedSubmissions.Add(SubmissionOne);
-            List<Submission> returnedSubmissions = submissionToMiddle.GetAllSubmissons(true);
+            var returnedSubmissions = submissionToMiddle.GetAllSubmissons(true);
             
-
             Assert.AreEqual(returnedSubmissions[0].StartTimeInHours, 10);
         }
 
