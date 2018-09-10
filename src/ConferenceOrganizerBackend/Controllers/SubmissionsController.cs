@@ -29,9 +29,9 @@ namespace ConferenceOrganizerBackend.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]Submission submission)
+        public Submission Post([FromBody]Submission submission)
         {
-            _submissionToDatabase.InsertSubmission(submission);
+            return _submissionToDatabase.InsertSubmission(submission);
         }
 
         [HttpPut("{id}")]

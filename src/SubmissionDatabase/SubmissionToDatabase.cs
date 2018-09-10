@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -6,7 +7,7 @@ namespace SubmissionDatabase
 {
     public interface ISubmissionToDatabase
     {
-        void InsertSubmission(Submission submission);
+        Submission InsertSubmission(Submission submission);
         List<Submission> GetAllSubmissons();
         Submission GetSubmission(string submissionId);
         SubmissionStatus GetSubmissionStatus();
@@ -32,9 +33,12 @@ namespace SubmissionDatabase
             _schedulePostedStatus = client.GetDatabase("conferencedb").GetCollection<SchedulePostedStatus>("schedulePostedStatus");
         }
 
-        public void InsertSubmission(Submission submission)
+        public Submission InsertSubmission(Submission submission)
         {
-            _submissions.InsertOne(submission);
+            var submissionWithId = submission;
+            submissionWithId.Id = ObjectId.GenerateNewId();
+           _submissions.InsertOne(submissionWithId);
+            return submissionWithId;
         }
 
         public List<Submission> GetAllSubmissons()
@@ -44,12 +48,13 @@ namespace SubmissionDatabase
 
         public Submission GetSubmission(string submissionId)
         {
-            return _submissions.Find(document => document.Id == submissionId).FirstOrDefault();
+            return _submissions.Find(document => document.Id.ToString() == submissionId).FirstOrDefault();
         }
 
         public SubmissionStatus GetSubmissionStatus()
         {
-            return _submissionsStatus.FindAsync(_ => true).Result.First();
+            return new SubmissionStatus("open");
+            return _submissionsStatus.FindAsync(_ => true).Result.FirstOrDefault();
         }
 
         public void SetSubmissionStatus(SubmissionStatus newStatus)
@@ -72,8 +77,9 @@ namespace SubmissionDatabase
 
         public SchedulePostedStatus GetSchedulePostedStatus()
         {
-            SchedulePostedStatus schedulePostedStatus = _schedulePostedStatus.FindAsync(_ => true).Result.First();
-            return schedulePostedStatus;
+            return new SchedulePostedStatus("posted");
+            //SchedulePostedStatus schedulePostedStatus = _schedulePostedStatus.FindAsync(_ => true).Result.FirstOrDefault();
+            //return schedulePostedStatus;
         }
 
         public void SetSchedulePostedStatus(SchedulePostedStatus newStatus)
